@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <messaging_user/>
+  <source_system/>
+  <alert_msg_type/>
+  <alert_subscription/>
+  <event_log/>
+  <event_attachement/>
+  <user_to_source_system_role/>
+</dataset>
