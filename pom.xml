@@ -10,6 +10,7 @@
 	
     <modules>
         <module>dbunit</module>
+        <module>misc</module>
     </modules>
     
      <properties>
