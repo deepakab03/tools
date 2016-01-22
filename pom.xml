@@ -11,6 +11,7 @@
     <modules>
         <module>dbunit</module>
         <module>misc</module>
+        <module>rabbitmq</module>
     </modules>
     
      <properties>
@@ -587,6 +588,12 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- util related -->
 
-    </dependencies>
+        <dependency>
+        	<groupId>org.apache.commons</groupId>
+        	<artifactId>commons-lang3</artifactId>
+        </dependency>
+	</dependencies>
 </project>
