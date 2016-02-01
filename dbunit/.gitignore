@@ -1,6 +1,4 @@
-/.settings
 /target/
+/.settings/
 .classpath
 .project
-full.xml
-partial.xml
