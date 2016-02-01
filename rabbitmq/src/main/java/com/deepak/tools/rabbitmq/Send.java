@@ -20,7 +20,7 @@ public class Send {
 		factory.setHost("localhost");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
-		
+			
 		try {
 			channel.queueDeclare(QUEUE_NAME, true, false, false, null);
 			String message = "Hello World!";
