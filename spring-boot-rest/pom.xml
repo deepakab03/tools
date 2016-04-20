@@ -6,6 +6,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.3.3.RELEASE</version>
+        <!-- by default is .. which is not the spring boot parent and hence outputs a warning while building through maven -->
+        <relativePath></relativePath>
     </parent>
 
 	<groupId>com.deepak.test</groupId>
@@ -21,7 +23,7 @@
     </dependencies>
 
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
 
