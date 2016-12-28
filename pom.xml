@@ -1,40 +1,41 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.deepak.tools</groupId>
-	<artifactId>tools-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>tools-parent</name>
-	
+    <artifactId>tools-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>tools-parent</name>
+
     <modules>
         <module>dbunit</module>
         <module>misc</module>
         <module>rabbitmq</module>
         <module>junit-etc</module>
         <module>spring-boot-rest</module>
+        <module>ssh</module>
     </modules>
-    
-     <properties>
+
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <vaadin.version>7.1.12</vaadin.version>
-        <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>        
+        <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <spring.version>4.1.5.RELEASE</spring.version>
         <spring.data.jpa>1.7.0.RELEASE</spring.data.jpa>
-        <org.springframework.boot.version>1.1.8.RELEASE</org.springframework.boot.version>  
+        <org.springframework.boot.version>1.1.8.RELEASE</org.springframework.boot.version>
         <jpa.version>2.1</jpa.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <hibernate.jpa2.version>1.0.1.Final</hibernate.jpa2.version>
-        <slf4j.version>1.7.4</slf4j.version>        
+        <slf4j.version>1.7.4</slf4j.version>
         <aspectj.version>1.8.1</aspectj.version>
-        
+
         <mockito.version>1.10.19</mockito.version>
         <powermock.version>1.6.4</powermock.version>
     </properties>
-    
-     <build>
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -43,26 +44,26 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
-                     <showWarnings>true</showWarnings>
+                    <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-            
+
             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-failsafe-plugin</artifactId>
-                     <executions>
-                         <execution>
-                             <id>integration-test</id>
-                             <goals>
-                                 <goal>integration-test</goal>
-                                 <goal>verify</goal>
-                             </goals>
-                         </execution>
-                     </executions>
-             </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-        
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -120,9 +121,9 @@
                     <artifactId>sql-maven-plugin</artifactId>
                     <version>1.5</version>
                 </plugin>
-                
+
                 <!-- spring boot related -->
-                 <plugin>
+                <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>1.2.0.M2</version>
@@ -130,10 +131,10 @@
             </plugins>
         </pluginManagement>
     </build>
-    
+
     <dependencyManagement>
         <dependencies>
-               <!-- spring -->
+            <!-- spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
@@ -209,64 +210,64 @@
                 <artifactId>spring-data-jpa</artifactId>
                 <version>${spring.data.jpa}</version>
             </dependency>
-            
-        <!-- Spring boot related -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependency-tools</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-loader</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-loader-tools</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${org.springframework.boot.version}</version>
-            <exclusions>
-              <exclusion>
-                <artifactId>commons-logging</artifactId>
-                <groupId>commons-logging</groupId>
-              </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${org.springframework.boot.version}</version>
-        </dependency>
+
+            <!-- Spring boot related -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-actuator</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependency-tools</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-loader</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-loader-tools</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>commons-logging</artifactId>
+                        <groupId>commons-logging</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${org.springframework.boot.version}</version>
+            </dependency>
             <!-- test related -->
             <dependency>
                 <groupId>junit</groupId>
@@ -274,7 +275,7 @@
                 <version>4.11</version>
                 <scope>test</scope>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-core</artifactId>
                 <version>1.3</version>
@@ -290,8 +291,8 @@
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- either use mockitor-core with hamcrest or mockito-all since the latter contains hamcrest classes
-               and will cause linkage versioning issues (MethodNotFoundErrors) if both are used -->
+            <!-- either use mockitor-core with hamcrest or mockito-all since the latter contains hamcrest classes 
+                and will cause linkage versioning issues (MethodNotFoundErrors) if both are used -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
@@ -321,20 +322,16 @@
                 <artifactId>dbunit</artifactId>
                 <version>2.5.0</version>
                 <scope>test</scope>
-                <!--  exclusions>
-                    <exclusion>
-                        <artifactId>commons-collections</artifactId>
-                        <groupId>commons-collections</groupId>
-                    </exclusion>
-                </exclusions> not required for simple stuff but required if we use dbunit to build flat xml dattaset -->      
+                <!-- exclusions> <exclusion> <artifactId>commons-collections</artifactId> <groupId>commons-collections</groupId> 
+                    </exclusion> </exclusions> not required for simple stuff but required if we use dbunit to build flat xml dattaset -->
             </dependency>
-            <!-- provides a number of useful Junit Rules like StandardOutputStreamLog-->
+            <!-- provides a number of useful Junit Rules like StandardOutputStreamLog -->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
                 <artifactId>system-rules</artifactId>
                 <version>1.8.0</version>
-                 <scope>test</scope>
-            </dependency>             
+                <scope>test</scope>
+            </dependency>
             <!-- logging -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -356,7 +353,7 @@
                 <artifactId>janino</artifactId>
                 <version>2.7.7</version>
             </dependency>
-            
+
             <!-- performance related -->
             <dependency>
                 <groupId>org.perf4j</groupId>
@@ -364,21 +361,21 @@
                 <version>0.9.16</version>
                 <scope>compile</scope>
             </dependency>
-            
+
             <!-- args library -->
             <dependency>
                 <groupId>args4j</groupId>
                 <artifactId>args4j</artifactId>
                 <version>2.0.26</version>
             </dependency>
-            
+
             <!-- Accessing mocrosoft format files -->
             <dependency>
-            <groupId>org.apache.poi</groupId>
+                <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
                 <version>3.12</version>
             </dependency>
-            
+
             <!-- hibernate related -->
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -395,40 +392,40 @@
                 <artifactId>hibernate-jpa-2.0-api</artifactId>
                 <version>${hibernate.jpa2.version}</version>
             </dependency>
-            <!--  javax validation with hibernate validation implementation -->
+            <!-- javax validation with hibernate validation implementation -->
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>1.1.0.Final</version>
             </dependency>
             <dependency>
-               <groupId>org.hibernate</groupId>
-               <artifactId>hibernate-validator</artifactId>
-               <version>5.1.2.Final</version>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.2.Final</version>
             </dependency>
             <dependency>
-               <groupId>javax.el</groupId>
-               <artifactId>javax.el-api</artifactId>
-               <version>2.2.4</version>
-               <scope>provided</scope>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>2.2.4</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
-               <groupId>org.glassfish.web</groupId>
-               <artifactId>javax.el</artifactId>
-               <version>2.2.4</version>
-            </dependency>                   
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>2.2.4</version>
+            </dependency>
             <!-- other third party -->
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>9.2-1003-jdbc4</version>
             </dependency>
-                <dependency>
+            <dependency>
                 <groupId>com.microsoft.sqlserver</groupId>
                 <artifactId>sqljdbc4</artifactId>
                 <version>4.0</version>
             </dependency>
-        
+
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
@@ -460,11 +457,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.3.2</version>
-            </dependency>            
+            </dependency>
             <dependency>
-                <groupId>commons-io</groupId>
+                <groupId>org.apache.commons</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.4</version>
+                <version>1.3.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -480,7 +477,7 @@
                         <artifactId>commons-collections</artifactId>
                         <groupId>commons-collections</groupId>
                     </exclusion>
-                </exclusions>                
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -492,7 +489,7 @@
                 <artifactId>logback-core</artifactId>
                 <version>1.1.1</version>
             </dependency>
-            
+
             <!-- TODO remove old dbcp and connection pool with next increment -->
             <dependency>
                 <groupId>commons-pool</groupId>
@@ -503,18 +500,18 @@
                 <groupId>commons-dbcp</groupId>
                 <artifactId>commons-dbcp</artifactId>
                 <version>1.4</version>
-             </dependency>
-             <dependency>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>2.3</version>
-             </dependency>  
-             <dependency>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-dbcp2</artifactId>
                 <version>2.1</version>
-             </dependency>
-             
+            </dependency>
+
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjrt</artifactId>
@@ -525,18 +522,18 @@
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>2.2.2</version>
                 <scope>runtime</scope>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>17.0</version>
-            </dependency> 
+            </dependency>
             <dependency>
                 <groupId>com.jayway.awaitility</groupId>
                 <artifactId>awaitility</artifactId>
@@ -553,7 +550,7 @@
                 <artifactId>jsoup</artifactId>
                 <version>1.7.2</version>
             </dependency>
-            
+
             <!-- client side http services -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
@@ -561,7 +558,7 @@
                 <version>4.3.1</version>
                 <type>pom</type>
             </dependency>
-            
+
             <!-- JSON library for parsing JSON etc. -->
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>
@@ -572,12 +569,12 @@
             <dependency>
                 <groupId>com.jcraft</groupId>
                 <artifactId>jsch</artifactId>
-                <version>0.1.51</version>
+                <version>0.1.54</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
-	<dependencies>
+
+    <dependencies>
         <!-- logging related -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -587,9 +584,9 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
-        </dependency> 
-        
-        <!-- Test related -->      
+        </dependency>
+
+        <!-- Test related -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -605,12 +602,16 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
-        
-        <!-- util related -->
 
+        <!-- util related -->
         <dependency>
-        	<groupId>org.apache.commons</groupId>
-        	<artifactId>commons-lang3</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>
