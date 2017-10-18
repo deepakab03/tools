@@ -13,12 +13,21 @@
 	<groupId>com.deepak.tools</groupId>
 	<artifactId>log-output-creator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Creates log output as desired</name>
-	
+    <packaging>war</packaging>
+    
+	<name>Creates log output</name>
+	<description>Uses a number of webservice endpoints to log/print dummy output to Std Out and / or Std Err, Eg : /loglines with an optional argument of kiloLines, to ouput that number of lines to Std Out</description>
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
