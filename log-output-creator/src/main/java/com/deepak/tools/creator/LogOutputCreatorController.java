@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LogOutputCreatorController {
+    private static final String DEFAULT_NUM_LINES = "1000";
+
     private static final Logger logger = LoggerFactory.getLogger(LogOutputCreatorController.class);
 
     private static final String template = "Number of lines printed to std out: %s!";
@@ -19,12 +21,12 @@ public class LogOutputCreatorController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/loglines")
-    public LogCount logToOutput(@RequestParam(value = "numLines", defaultValue = "10") int numLinesPassedIn) {
+    public LogCount logToOutput(@RequestParam(value = "numLines", defaultValue = DEFAULT_NUM_LINES) int numLinesPassedIn) {
         return logToStdOut(numLinesPassedIn);
     }
 
     @RequestMapping("/out/loglines")
-    public LogCount logToStdOut(@RequestParam(value = "numLines", defaultValue = "10") int numLinesPassedIn) {
+    public LogCount logToStdOut(@RequestParam(value = "numLines", defaultValue = DEFAULT_NUM_LINES) int numLinesPassedIn) {
         int numLines = validateAndPrintLog(numLinesPassedIn);
         for (int i = 0; i < numLines; i++) {
             logger.info("{}", LINE);
@@ -44,7 +46,7 @@ public class LogOutputCreatorController {
     }
 
     @RequestMapping("/out/loglines/debug")
-    public LogCount logToStdOutAtDebug(@RequestParam(value = "numLines", defaultValue = "10") int numLinesPassedIn) {
+    public LogCount logToStdOutAtDebug(@RequestParam(value = "numLines", defaultValue = DEFAULT_NUM_LINES) int numLinesPassedIn) {
         int numLines = validateAndPrintLog(numLinesPassedIn);
         for (int i = 0; i < numLines; i++) {
             logger.debug("{}", LINE);
@@ -53,7 +55,7 @@ public class LogOutputCreatorController {
     }
 
     @RequestMapping("/out/printlines")
-    public LogCount printoStdOut(@RequestParam(value = "numLines", defaultValue = "10") int numLinesPassedIn) {
+    public LogCount printoStdOut(@RequestParam(value = "numLines", defaultValue = DEFAULT_NUM_LINES) int numLinesPassedIn) {
         int numLines = validateAndPrintLog(numLinesPassedIn);
         for (int i = 0; i < numLines; i++) {
             System.out.println(LINE);
@@ -62,7 +64,7 @@ public class LogOutputCreatorController {
     }
 
     @RequestMapping("/err/printlines")
-    public LogCount printToStdErr(@RequestParam(value = "numLines", defaultValue = "10") int numLinesPassedIn) {
+    public LogCount printToStdErr(@RequestParam(value = "numLines", defaultValue = DEFAULT_NUM_LINES) int numLinesPassedIn) {
         int numLines = validateAndPrintLog(numLinesPassedIn);
         for (int i = 0; i < numLines; i++) {
             System.err.println(LINE);
