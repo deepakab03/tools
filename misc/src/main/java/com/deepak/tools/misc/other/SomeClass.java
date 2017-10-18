@@ -21,7 +21,7 @@ public class SomeClass {
         Random random = new Random();
         for (int i = 0; i < 10 * 1000; i++) {
             robot.mouseMove(x1++, y1++);
-            if ( i % 50 == 0) {
+            if ( i % 10 == 0) {
                 x1 = DEF_X + random.nextInt(400); 
                 y1 = DEF_Y + random.nextInt(400);
             }
