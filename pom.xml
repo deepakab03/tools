@@ -15,22 +15,34 @@
         <module>junit-etc</module>
         <module>spring-boot-rest</module>
         <module>ssh</module>
-    <module>deepak-test-hello</module>
+        <module>spring-test</module>
   </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        
         <vaadin.version>7.1.12</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-        <spring.version>4.1.5.RELEASE</spring.version>
-        <spring.data.jpa>1.7.0.RELEASE</spring.data.jpa>
-        <org.springframework.boot.version>1.1.8.RELEASE</org.springframework.boot.version>
+        
+        <!-- NOTE - spring.version and spring.data.jpa.version should be set as per the version entries 
+            in the spring-boot-starter-parent artifact for the chosen spring boot version so that spring.boot, spring core 
+            libs and sprign data libs can be combined and used as required seamlessly, otherwise class versioning issues arise
+            Additionally aspectj (and other lib versions) can to be changed as per spring-boot spring-boot-dependencies pom -->
+        <spring.boot.version>2.0.0.RC1</spring.boot.version>
+        <spring.version>5.0.3.RELEASE</spring.version>
+        <spring.security.version>5.0.1.RELEASE</spring.security.version>
+        <spring.session.version>2.0.1.RELEASE</spring.session.version>
+        <spring.data.jpa.version>2.0.3.RELEASE</spring.data.jpa.version>
+        <!-- end spring versions -->
+        <aspectj.version>1.8.1</aspectj.version>
+        
+        <!-- TODO change as per spring boot version above -->
         <jpa.version>2.1</jpa.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <hibernate.jpa2.version>1.0.1.Final</hibernate.jpa2.version>
+        
         <slf4j.version>1.7.4</slf4j.version>
-        <aspectj.version>1.8.1</aspectj.version>
 
         <mockito.version>1.10.19</mockito.version>
         <powermock.version>1.6.4</powermock.version>
@@ -209,44 +221,44 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-jpa</artifactId>
-                <version>${spring.data.jpa}</version>
+                <version>${spring.data.jpa.version}</version>
             </dependency>
 
             <!-- Spring boot related -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-actuator</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependency-tools</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-loader</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-loader-tools</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
                 <exclusions>
                     <exclusion>
                         <artifactId>commons-logging</artifactId>
@@ -257,17 +269,17 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-aop</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <!-- test related -->
             <dependency>

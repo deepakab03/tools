@@ -1,4 +1,4 @@
-package com.deepak.springbootrest;
+package com.deepak.test.spring.common;
 
 public class Greeting {
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<configuration debug="false" packagingData="false" scan="true" scanPeriod="120 seconds">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">  
+        <resetJUL>true</resetJUL>  
+    </contextListener>    
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+            <pattern>[%thread] %.-1level| %d{HH:mm:ss.SSS} | [%logger{30}:%line] | %msg%n</pattern>
+        </encoder> 
+    </appender>
+    
+    <!-- Selective logging -->
+    <logger name="com.deepak" level="trace" />
+
+    <!-- Third party loggers -->
+    <logger name="org.springframework" level="info" />
+        
+    <!--  root logger -->
+    <root level="INFO"> 
+        <appender-ref ref="CONSOLE" />
+    </root> 
+    
+</configuration>
