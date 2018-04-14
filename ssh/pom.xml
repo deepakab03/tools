@@ -6,6 +6,8 @@
         <artifactId>tools-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    
+    <groupId>com.deepak.tools.test</groupId>
     <artifactId>ssh</artifactId>
     <name>SSH related</name>
     <description>For file transfer using jsch etc</description>

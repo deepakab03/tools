@@ -7,6 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
+    
+    <groupId>com.deepak.tools.test</groupId>
 	<artifactId>junit-etc</artifactId>
 	<name>Junit related</name>
 	<description>Mockito, junit params, powermock etc</description>

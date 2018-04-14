@@ -10,7 +10,7 @@
         <relativePath></relativePath>
     </parent>
 
-	<groupId>com.deepak.test</groupId>
+	<groupId>com.deepak.tools.test</groupId>
 	<artifactId>spring-boot-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring boot rest api</name>
