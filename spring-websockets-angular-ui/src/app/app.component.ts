@@ -22,7 +22,7 @@ export class AppComponent {
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe("/chat", (message) => {
+      that.stompClient.subscribe("/uiUpdate", (message) => {
         if(message.body) {
           $(".chat").append("<div class='message'>"+message.body+"</div>")
           console.log(message.body);
@@ -32,7 +32,7 @@ export class AppComponent {
   }
 
   sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
+    this.stompClient.send("/app/send/startSubscription" , {}, message);
     $('#input').val('');
   }
 
