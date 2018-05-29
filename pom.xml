@@ -21,27 +21,27 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        
+
         <vaadin.version>7.1.12</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-        
-        <!-- NOTE - spring.version and spring.data.jpa.version should be set as per the version entries 
-            in the spring-boot-starter-parent artifact for the chosen spring boot version so that spring.boot, spring core 
+
+        <!-- NOTE - spring.version and spring.data.jpa.version should be set as per the version entries
+            in the spring-boot-starter-parent artifact for the chosen spring boot version so that spring.boot, spring core
             libs and sprign data libs can be combined and used as required seamlessly, otherwise class versioning issues arise
             Additionally aspectj (and other lib versions) can to be changed as per spring-boot spring-boot-dependencies pom -->
         <spring.boot.version>2.0.0.RC1</spring.boot.version>
         <spring.version>5.0.3.RELEASE</spring.version>
         <spring.security.version>5.0.1.RELEASE</spring.security.version>
-        <spring.session.version>2.0.1.RELEASE</spring.session.version>
+        <spring.session.version>2.0.3.RELEASE</spring.session.version>
         <spring.data.jpa.version>2.0.3.RELEASE</spring.data.jpa.version>
         <!-- end spring versions -->
         <aspectj.version>1.8.1</aspectj.version>
-        
+
         <!-- TODO change as per spring boot version above -->
         <jpa.version>2.1</jpa.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <hibernate.jpa2.version>1.0.1.Final</hibernate.jpa2.version>
-        
+
         <slf4j.version>1.7.4</slf4j.version>
 
         <mockito.version>1.10.19</mockito.version>
@@ -113,6 +113,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.4</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -304,7 +307,7 @@
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- either use mockitor-core with hamcrest or mockito-all since the latter contains hamcrest classes 
+            <!-- either use mockitor-core with hamcrest or mockito-all since the latter contains hamcrest classes
                 and will cause linkage versioning issues (MethodNotFoundErrors) if both are used -->
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -335,7 +338,7 @@
                 <artifactId>dbunit</artifactId>
                 <version>2.5.0</version>
                 <scope>test</scope>
-                <!-- exclusions> <exclusion> <artifactId>commons-collections</artifactId> <groupId>commons-collections</groupId> 
+                <!-- exclusions> <exclusion> <artifactId>commons-collections</artifactId> <groupId>commons-collections</groupId>
                     </exclusion> </exclusions> not required for simple stuff but required if we use dbunit to build flat xml dattaset -->
             </dependency>
             <!-- provides a number of useful Junit Rules like StandardOutputStreamLog -->
