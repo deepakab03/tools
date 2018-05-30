@@ -72,7 +72,7 @@
 
         <dependency>
             <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-jdbc</artifactId>
+            <artifactId>spring-session-core</artifactId>
         </dependency>
         <!-- for embedded session management to work with spring-session-jdbc -->
         <dependency>
