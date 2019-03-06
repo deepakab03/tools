@@ -1,32 +1,111 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
+    <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.3.RELEASE</version>
-        <!-- by default is .. which is not the spring boot parent and hence outputs a warning while building through maven -->
+        <version>2.0.0.RELEASE</version>
+        <!-- by default is .. which is not the spring boot parent and hence outputs a warning while building through
+            maven -->
         <relativePath></relativePath>
     </parent>
 
-	<groupId>com.deepak.tools.test</groupId>
-	<artifactId>spring-boot-rest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring boot rest api</name>
-	<packaging>war</packaging>
+    <groupId>com.deepak.tools.test</groupId>
+    <artifactId>spring-boot-rest</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Spring boot rest api</name>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm z</maven.build.timestamp.format>
+        <java.version>1.8</java.version>
+
+        <!--  test props have new in them to avoid clashing with spring pre-defined props since we inherit
+              from them  -->
+        <junitNew.version>5.1.0-RC1</junitNew.version>
+        <mockitoNew.version>2.17.0</mockitoNew.version>
+        <hamcrestNew.version>2.0.0.0</hamcrestNew.version>
+        <junit.platform.version>1.1.0</junit.platform.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- below for @EnableAspectJAutoProxy -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Public API for running JUnit 5 tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junitNew.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- For running JUnit 5 parameterized tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junitNew.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--test engine required for JUnit 5 test exec at runtime -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junitNew.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- public API for configuring and launching test plans — typically used by IDEs and build tools -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- hamcrest-core should NOT be used as it has been superseded by this jar with different artifact id -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>java-hamcrest</artifactId>
+            <version>${hamcrestNew.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockitoNew.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
 
     <build>
         <plugins>
