@@ -9,13 +9,18 @@
     <name>tools-parent</name>
 
     <modules>
-        <module>dbunit</module>
+        <module>adv-java</module>
         <module>misc</module>
+        <module>log-output-creator</module>
+        <module>dbunit</module>
         <module>rabbitmq</module>
         <module>junit-etc</module>
+        <module>servlets-stuff</module>
         <module>spring-boot-rest</module>
-        <module>ssh</module>
         <module>spring-test</module>
+        <module>spring-session</module>
+        <module>spring-websockets-angular</module>
+        <module>ssh</module>
   </modules>
 
     <properties>
