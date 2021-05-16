@@ -21,7 +21,8 @@
         <module>spring-session</module>
         <module>spring-websockets-angular</module>
         <module>ssh</module>
-  </modules>
+        <module>get-a-vac</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
