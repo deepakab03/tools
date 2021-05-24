@@ -10,7 +10,6 @@ import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -50,9 +49,9 @@ public class GetIt {
             // headers.set("Accept-Encoding", "gzip, deflate, br");
             headers.set("Accept-Language", "en-US,en;q=0.5");
             headers.set("Authorization", "");
-            headers.set("Connecti   on", "keep-alive");
+            headers.set("Connection", "keep-alive");
             headers.set("Host", "");
-            headers.set("If-None-Match", "W/\"19a6e-RUs2NL3QOrq0irexSZcvqKSwp/E\"");
+            headers.set("If-None-Match", "");
             headers.set("Origin", "");
             headers.set("Referer", "");
             headers.set("TE", "Trailers");
@@ -96,15 +95,39 @@ public class GetIt {
         ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
         
         String json = result.getBody();
+        return parseResult(minAgeLimit, json);
+    }
+
+    public static boolean parseResult(int minAgeLimit, String json) throws AWTException {
         Assert.hasText(json, "Returned JSON should have some text...");
 //        logger.debug("Json ret:{}", StringUtils.substring(json, 0, 200));
 //        int districtIndex = StringUtils.indexOfIgnoreCase(json, "APOLLO HOSPITAL");
 //        if (districtIndex != -1) {
 //            logger.info("district: {}", StringUtils.substring(json, districtIndex - 50, districtIndex + 500));
 //        }
-        Pattern pattern = Pattern.compile(String.format("\"available_capacity\":[1-9]\\d+,\"min_age_limit\":%d,", minAgeLimit));
+        Pattern centerSubJsonPattern = Pattern.compile("\\{\"center_id\":.+?\\}\\]\\}");//ends in another center_id or end of centers
+        Matcher centerMatcher = centerSubJsonPattern.matcher(json);
+        boolean found = false;
+        while (centerMatcher.find()) {
+            String subJson = centerMatcher.group(0);
+            if (found) {
+                findInCentreJsonSubStr(minAgeLimit, subJson);
+            } else {
+                found = findInCentreJsonSubStr(minAgeLimit, subJson);
+            }
+        }
+        
+        return found; 
+    }
+
+    private static boolean findInCentreJsonSubStr(int minAgeLimit, String json) throws AWTException {
+        Pattern pattern = Pattern.compile(String.format("\"available_capacity\":[1-9]\\d*,\"min_age_limit\":%d,.+?\"available_capacity_dose1\":(\\d+)", minAgeLimit));
+        
         Matcher matcher = pattern.matcher(json);
         if (matcher.find()) {
+            if (Integer.parseInt(matcher.group(1)) == 0) {
+                return false;
+            }
             String matchedText = matcher.group();
             int matchedIndex = json.indexOf(matchedText);
             int startIndex = matchedIndex - 1500;
@@ -116,7 +139,7 @@ public class GetIt {
                 startIndex = json.length();
             }
             String strPart = json.substring(startIndex, endIndex);
-            logger.info("FOUND: {}", strPart);
+            logger.info("FOUND: {}", json);
             
             TrayIcon trayIcon = createSysTray();
             
