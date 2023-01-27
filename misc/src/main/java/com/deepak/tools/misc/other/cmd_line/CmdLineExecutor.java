@@ -3,6 +3,7 @@ package com.deepak.tools.misc.other.cmd_line;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -23,25 +24,32 @@ public class CmdLineExecutor {
         return exitValue;
     }
 
-    public int executeCmd2(String[] strings) throws IOException, InterruptedException {
-        List<String> cmdList = Arrays.asList("cmd", "/c", "cd", "C:\\dev", "&&", "dir");
+    public CmdExecResult executeCmd2(String[] strings) throws IOException, InterruptedException {
+        List<String> cmdList = obtainCmdList(strings, "cmd", "/c", "cd", "C:\\dev", "&&", "dir");
         ProcessBuilder pb = new ProcessBuilder(cmdList);
         pb.redirectErrorStream(true); // redirect STD ERR to STD OUT
         Process process = pb.start();
+        List<String> output = new ArrayList<>(100);
         try (final BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
             String line = null;
             while ((line = br.readLine()) != null) {
                 System.out.println("std-out-line: " + line);
+                output.add(line);
             }
         }
         int exitValue = process.waitFor();
         System.out.format("exitValue: %d\n", exitValue);
 
-        return exitValue;
+        return new CmdExecResult(exitValue, output);
     }
 
+	private List<String> obtainCmdList(String[] strings, String... defaultArgs) {
+		List<String> cmdList = strings == null || strings.length == 0 ? Arrays.asList(defaultArgs) : Arrays.asList(strings);
+		return cmdList;
+	}
+
     public int executeCmd3(String[] strings) throws IOException, InterruptedException, ExecutionException {
-        List<String> cmdList = Arrays.asList("cmd", "/c", "cd", "C:\\dev", "&&", "dir");
+        List<String> cmdList =  obtainCmdList(strings, "cmd", "/c", "cd", "C:\\dev", "&&", "dir"); 
         ProcessBuilder pb = new ProcessBuilder(cmdList);
         pb.redirectErrorStream(true); // redirect STD ERR to STD OUT
         Process process = pb.start();

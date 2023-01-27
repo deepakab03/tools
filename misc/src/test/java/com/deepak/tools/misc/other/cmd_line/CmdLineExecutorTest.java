@@ -22,9 +22,9 @@ public class CmdLineExecutorTest {
     
     @Test public void 
     whenExecuteCmd2_shouldCaptureOutput() throws IOException, InterruptedException {
-        int exitValue = cmdLineExecutor.executeCmd2(new String[] {"cmd", "/c", "cd", "C:\\dev", "&&", "dir"});
+        CmdExecResult result = cmdLineExecutor.executeCmd2(new String[] {"cmd", "/c", "cd", "C:\\dev", "&&", "dir"});
         
-        assertThat(exitValue, is(0));
+        assertThat(result.getExitCode(), is(0));
     }
     
     @Test public void 
